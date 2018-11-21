@@ -55,18 +55,18 @@ public class VgoitemResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new vgoitem, or with status 400 (Bad Request) if the vgoitem has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/vgoitems")
-    @Timed
-    public ResponseEntity<Vgoitem> createVgoitem(@Valid @RequestBody Vgoitem vgoitem) throws URISyntaxException {
-        log.debug("REST request to save Vgoitem : {}", vgoitem);
-        if (vgoitem.getId() != null) {
-            throw new BadRequestAlertException("A new vgoitem cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        Vgoitem result = vgoitemService.save(vgoitem);
-        return ResponseEntity.created(new URI("/api/vgoitems/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
+    // @PostMapping("/vgoitems")
+    // @Timed
+    // public ResponseEntity<Vgoitem> createVgoitem(@Valid @RequestBody Vgoitem vgoitem) throws URISyntaxException {
+    //     log.debug("REST request to save Vgoitem : {}", vgoitem);
+    //     if (vgoitem.getId() != null) {
+    //         throw new BadRequestAlertException("A new vgoitem cannot already have an ID", ENTITY_NAME, "idexists");
+    //     }
+    //     Vgoitem result = vgoitemService.save(vgoitem);
+    //     return ResponseEntity.created(new URI("/api/vgoitems/" + result.getId()))
+    //         .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+    //         .body(result);
+    // }
 
     /**
      * PUT  /vgoitems : Updates an existing vgoitem.
@@ -77,18 +77,18 @@ public class VgoitemResource {
      * or with status 500 (Internal Server Error) if the vgoitem couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/vgoitems")
-    @Timed
-    public ResponseEntity<Vgoitem> updateVgoitem(@Valid @RequestBody Vgoitem vgoitem) throws URISyntaxException {
-        log.debug("REST request to update Vgoitem : {}", vgoitem);
-        if (vgoitem.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        Vgoitem result = vgoitemService.save(vgoitem);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, vgoitem.getId().toString()))
-            .body(result);
-    }
+    // @PutMapping("/vgoitems")
+    // @Timed
+    // public ResponseEntity<Vgoitem> updateVgoitem(@Valid @RequestBody Vgoitem vgoitem) throws URISyntaxException {
+    //     log.debug("REST request to update Vgoitem : {}", vgoitem);
+    //     if (vgoitem.getId() == null) {
+    //         throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+    //     }
+    //     Vgoitem result = vgoitemService.save(vgoitem);
+    //     return ResponseEntity.ok()
+    //         .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, vgoitem.getId().toString()))
+    //         .body(result);
+    // }
 
     /**
      * GET  /vgoitems : get all the vgoitems.
@@ -139,13 +139,13 @@ public class VgoitemResource {
      * @param id the id of the vgoitem to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/vgoitems/{id}")
-    @Timed
-    public ResponseEntity<Void> deleteVgoitem(@PathVariable Long id) {
-        log.debug("REST request to delete Vgoitem : {}", id);
-        vgoitemService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
+    // @DeleteMapping("/vgoitems/{id}")
+    // @Timed
+    // public ResponseEntity<Void> deleteVgoitem(@PathVariable Long id) {
+    //     log.debug("REST request to delete Vgoitem : {}", id);
+    //     vgoitemService.delete(id);
+    //     return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    // }
 
     /**
      * SEARCH  /_search/vgoitems?query=:query : search for the vgoitem corresponding
