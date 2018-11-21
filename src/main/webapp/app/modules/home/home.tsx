@@ -22,6 +22,7 @@ export class Home extends React.Component<IHomeProp> {
       <Row>
         <Col md="9">
           <h2>Prices Tool!</h2>
+          <br />
           {account && account.login ? (
             <div>
               <Alert color="success">You are logged in as user {account.login}.</Alert>
@@ -29,13 +30,8 @@ export class Home extends React.Component<IHomeProp> {
           ) : (
             <div>
               <Alert color="warning">
-                You do not have an account yet?&nbsp;
-                <Link to="/register" className="alert-link">
-                  Register a new account or
-                  <Link to="/login" className="alert-link">
-                    {' '}
-                    Sign In
-                  </Link>
+                <Link to="/login" className="alert-link">
+                  Please Sign In
                 </Link>
               </Alert>
             </div>

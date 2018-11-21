@@ -95,15 +95,6 @@ export class RegisterPage extends React.Component<IRegisterProps, IRegisterState
               </Button>
             </AvForm>
             <p>&nbsp;</p>
-            <Alert color="warning">
-              <span>If you want to</span>
-              <a className="alert-link"> sign in</a>
-              <span>
-                , you can try the default accounts:
-                <br />- Administrator (login="admin" and password="admin")
-                <br />- User (login="user" and password="user").
-              </span>
-            </Alert>
           </Col>
         </Row>
       </div>
