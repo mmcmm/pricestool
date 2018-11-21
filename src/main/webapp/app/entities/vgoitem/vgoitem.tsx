@@ -1,3 +1,5 @@
+import './vgoitem.scss';
+
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
@@ -86,13 +88,7 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
     const { vgoitemList, match } = this.props;
     return (
       <div>
-        <h2 id="vgoitem-heading">
-          Vgoitems
-          <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />
-            &nbsp; Create new Vgoitem
-          </Link>
-        </h2>
+        <h2 id="vgoitem-heading">Vgoitems</h2>
         <Row>
           <Col sm="12">
             <AvForm onSubmit={this.search}>
@@ -122,38 +118,16 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
             <Table responsive>
               <thead>
                 <tr>
-                  <th className="hand" onClick={this.sort('id')}>
-                    ID <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('name')}>
-                    Name <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('category')}>
-                    Category <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('rarity')}>
-                    Rarity <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('type')}>
-                    Type <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('color')}>
-                    Color <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('image300px')}>
-                    Image 300 Px <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('image600px')}>
-                    Image 600 Px <FontAwesomeIcon icon="sort" />
-                  </th>
+                  <th>Image</th>
+                  <th>Name</th>
                   <th className="hand" onClick={this.sort('suggestedPrice')}>
-                    Suggested Price <FontAwesomeIcon icon="sort" />
+                    Price <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('suggestedPrice7day')}>
-                    Suggested Price 7 Day <FontAwesomeIcon icon="sort" />
+                    Price 7 <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('suggestedPrice30day')}>
-                    Suggested Price 30 Day <FontAwesomeIcon icon="sort" />
+                    Price 30 <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -162,17 +136,13 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
                 {vgoitemList.map((vgoitem, i) => (
                   <tr key={`entity-${i}`}>
                     <td>
-                      <Button tag={Link} to={`${match.url}/${vgoitem.id}`} color="link" size="sm">
-                        {vgoitem.id}
-                      </Button>
+                      <Link to={`${match.url}/${vgoitem.id}`}>
+                        <img src={vgoitem.image300px} className="vgoimage" />
+                      </Link>
                     </td>
-                    <td>{vgoitem.name}</td>
-                    <td>{vgoitem.category}</td>
-                    <td>{vgoitem.rarity}</td>
-                    <td>{vgoitem.type}</td>
-                    <td>{vgoitem.color}</td>
-                    <td>{vgoitem.image300px}</td>
-                    <td>{vgoitem.image600px}</td>
+                    <td>
+                      <Link to={`${match.url}/${vgoitem.id}`}>{vgoitem.name} </Link>
+                    </td>
                     <td>{vgoitem.suggestedPrice}</td>
                     <td>{vgoitem.suggestedPrice7day}</td>
                     <td>{vgoitem.suggestedPrice30day}</td>
@@ -180,12 +150,6 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${vgoitem.id}`} color="info" size="sm">
                           <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
-                        </Button>
-                        <Button tag={Link} to={`${match.url}/${vgoitem.id}/edit`} color="primary" size="sm">
-                          <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
-                        </Button>
-                        <Button tag={Link} to={`${match.url}/${vgoitem.id}/delete`} color="danger" size="sm">
-                          <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
                         </Button>
                       </div>
                     </td>
