@@ -28,8 +28,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/pricestool
-        username: pricestool
-        password:
+        username: ${POSTGRES_USER}
+        password: ${POSTGRES_PASSWORD}
         hikari:
             auto-commit: false
     jpa:
