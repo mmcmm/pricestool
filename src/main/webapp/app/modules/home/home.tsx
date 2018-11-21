@@ -33,7 +33,8 @@ export class Home extends React.Component<IHomeProp> {
                 <Link to="/register" className="alert-link">
                   Register a new account or
                   <Link to="/login" className="alert-link">
-                    sign in
+                    {' '}
+                    Sign In
                   </Link>
                 </Link>
               </Alert>
