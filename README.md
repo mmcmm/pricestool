@@ -1,14 +1,5 @@
 # pricestool
 
-
-## Building for production
-
-To optimize the pricestool application for production, run:
-
-
-To ensure everything worked, run:
-
-
 ## Testing
 
 To launch your application's tests, run:
