@@ -141,7 +141,7 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
                       </Link>
                     </td>
                     <td>
-                      <Link to={`${match.url}/${vgoitem.id}`}>{vgoitem.name} </Link>
+                      <Link to={`${match.url}/${vgoitem.id}`}>{vgoitem.name}</Link>
                     </td>
                     <td>{vgoitem.suggestedPrice}</td>
                     <td>{vgoitem.suggestedPrice7day}</td>
