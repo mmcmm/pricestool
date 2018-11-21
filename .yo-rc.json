@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.pricestool.pricestool"
+    },
+    "jhipsterVersion": "5.7.0",
+    "applicationType": "monolith",
+    "baseName": "pricestool",
+    "packageName": "com.pricestool.pricestool",
+    "packageFolder": "com/pricestool/pricestool",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OGU0MTIxOWZiYmNhNTBiNjYwYWVmY2FlYjYyMDI0OWE3NGNkOWNiMzI1Y2NmOWY3NjZlMjk5YTkzYTMzNDg4NWIzNjA2NDkxYWJhZDc1YTI4ZTgxMWNjZDRlMGMyMWZlNDRlNTBkZjg2MGIzOTY5ZDJkZmI3MmM3MjhkOWI3YWQ=",
+    "clientFramework": "react",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}
