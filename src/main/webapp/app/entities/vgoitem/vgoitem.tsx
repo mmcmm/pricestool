@@ -148,7 +148,13 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
                     <td>{vgoitem.suggestedPrice30day}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
-                        <Button tag={Link} to={`${match.url}/${vgoitem.id}`} color="info" size="sm">
+                        <Button
+                          tag={Link}
+                          to={`https://opskins.com/?app=1912_1&loc=shop_search&search_item=${vgoitem.name}&sort=lh`}
+                          color="info"
+                          size="sm"
+                          target="_blank"
+                        >
                           <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
                         </Button>
                       </div>
