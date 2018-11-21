@@ -88,8 +88,8 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
       utils.root('src/test'),
     ]),
     new WebpackNotifierPlugin({
-      title: 'JHipster',
-      contentImage: path.join(__dirname, 'logo-jhipster.png')
+      title: 'Prices Tool',
+      contentImage: path.join(__dirname, 'logo.png')
     })
   ].filter(Boolean)
 });
