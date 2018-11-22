@@ -28,7 +28,7 @@ public class Vgoitem implements Serializable {
 
     @NotNull
     @Size(max = 255)
-    @Column(name = "name", length = 255, nullable = false, unique = true)
+    @Column(name = "name", length = 255, nullable = false)
     private String name;
 
     @Column(name = "op_7_day")
