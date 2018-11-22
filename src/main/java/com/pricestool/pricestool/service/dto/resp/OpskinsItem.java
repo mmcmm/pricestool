@@ -4,29 +4,43 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.*;
 
 /**
  * A DTO for the opskins response item.
  */
 public class OpskinsItem implements Serializable {
 
-    private int price;
+    private String name;
+    private String category;
+    private String rarity;
+    private String type;
+    private String color;
+    private Map<String, String> image;
+    private long suggestedPrice;
+    private Object paintIndex;
 
-    private int quantity;
+    public String getName() { return name; }
+    public void setName(String value) { this.name = value; }
 
-    public int getPrice() {
-        return price;
-    }
+    public String getCategory() { return category; }
+    public void setCategory(String value) { this.category = value; }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+    public String getRarity() { return rarity; }
+    public void setRarity(String value) { this.rarity = value; }
 
-    public int getQuantity() {
-        return quantity;
-    }
+    public String getType() { return type; }
+    public void setType(String value) { this.type = value; }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    public String getColor() { return color; }
+    public void setColor(String value) { this.color = value; }
+
+    public Map<String, String> getImage() { return image; }
+    public void setImage(Map<String, String> value) { this.image = value; }
+
+    public long getSuggestedPrice() { return suggestedPrice; }
+    public void setSuggestedPrice(long value) { this.suggestedPrice = value; }
+
+    public Object getPaintIndex() { return paintIndex; }
+    public void setPaintIndex(Object value) { this.paintIndex = value; }
 }

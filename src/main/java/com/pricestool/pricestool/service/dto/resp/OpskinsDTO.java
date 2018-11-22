@@ -1,6 +1,5 @@
 package com.pricestool.pricestool.service.dto.resp;
 
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashMap;
@@ -11,6 +10,8 @@ import java.util.HashMap;
 public class OpskinsDTO implements Serializable {
 
     private int status;
+
+    private long time;
 
     private HashMap<String, HashMap<String, HashMap<String, HashMap<String, OpskinsItem>>>> response;
 
@@ -28,5 +29,13 @@ public class OpskinsDTO implements Serializable {
 
     public void setResponse(HashMap<String, HashMap<String, HashMap<String, HashMap<String, OpskinsItem>>>> response) {
         this.response = response;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long value) {
+        this.time = value;
     }
 }
