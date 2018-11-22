@@ -82,6 +82,12 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
     this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
   };
 
+  money = (amount: number) =>
+    amount
+      .toFixed(2)
+      .replace(/\d(?=(\d{3})+\.)/g, '$&,')
+      .replace('.00', '');
+
   render() {
     const { vgoitemList, match } = this.props;
     return (
@@ -134,19 +140,13 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
                     <td>
                       <Link to={`${match.url}/${vgoitem.id}`}>{vgoitem.name}</Link>
                     </td>
-                    <td>{vgoitem.op7day}</td>
-                    <td>{vgoitem.op30day}</td>
+                    <td>${this.money(vgoitem.op7day / 100)}</td>
+                    <td>${this.money(vgoitem.op30day / 100)}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
-                        <Button
-                          tag={Link}
-                          to={`https://opskins.com/?app=1912_1&loc=shop_search&search_item=${vgoitem.name}&sort=lh`}
-                          color="info"
-                          size="sm"
-                          target="_blank"
-                        >
-                          <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
-                        </Button>
+                        <a href={`https://opskins.com/?app=1912_1&loc=shop_search&search_item=${vgoitem.name}&sort=lh`} target="_blank">
+                          <FontAwesomeIcon icon="eye" />
+                        </a>
                       </div>
                     </td>
                   </tr>
