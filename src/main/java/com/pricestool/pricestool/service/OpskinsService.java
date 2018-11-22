@@ -21,14 +21,14 @@ import java.util.*;
 @Transactional
 public class OpskinsService {
 
-    @Value("${OP_API_KEY}")
-    private String OP_API_KEY;
+    // @Value("${OP_API_KEY}")
+    // private String OP_API_KEY;
 
     private final Logger log = LoggerFactory.getLogger(OpskinsService.class);
 
     final String OP_ITEMS_API_URL = "https://api-trade.opskins.com/IItem/GetItems/v1/?key=";
    
-    final String OP_PRICES_API_URL = "https://api.opskins.com/IPricing/GetSuggestedPrices/v2/?appid=1912&key=";
+    final String OP_PRICES_API_URL = "https://api.opskins.com/IPricing/GetSuggestedPrices/v2/?appid=1912";
 
 
     private final VgoitemService vgoItemService;
@@ -44,13 +44,13 @@ public class OpskinsService {
         log.debug("Run scheduled opskins  update items {}");
 
         // get all normal items
-        Map<String, Price> prices = callEndpoint(OP_ITEMS_API_URL+OP_API_KEY).getResponse();
+        Map<String, Price> prices = callEndpoint(OP_PRICES_API_URL).getResponse();
         for (String name : prices.keySet()) {
             Vgoitem vgoitem = new Vgoitem(); 
             vgoitem.setName(name);
-            vgoitem.setOp7day(prices.get(name).getOp7Day());        
-            vgoitem.setOp7day(prices.get(name).getOp30Day());
-            vgoItemService.save(vgoitem);        
+            vgoitem.setOp7day(prices.get(name).get_op_7_day());        
+            vgoitem.setOp7day(prices.get(name).get_op_30_day());
+            // vgoItemService.save(vgoitem);        
         } 
     }
 
