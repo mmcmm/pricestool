@@ -8,7 +8,6 @@
             "fieldType": "String",
             "fieldValidateRules": [
                 "required",
-                "unique",
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": "255"
