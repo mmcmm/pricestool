@@ -42,9 +42,9 @@ public class OpskinsService {
 
         // get all normal items
         Map<String, Price> prices = callEndpoint(OP_PRICES_API_URL).getResponse();
+        vgoItemService.deleteAll();
         for (String name : prices.keySet()) {
             try {
-                vgoItemService.deleteAll();
                 Vgoitem vgoitem = new Vgoitem();
                 vgoitem.setName(name);
                 vgoitem.setOp7day(prices.get(name).getOp7Day());
