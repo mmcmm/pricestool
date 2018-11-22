@@ -43,11 +43,15 @@ public class OpskinsService {
         // get all normal items
         Map<String, Price> prices = callEndpoint(OP_PRICES_API_URL).getResponse();
         for (String name : prices.keySet()) {
-            Vgoitem vgoitem = new Vgoitem();
-            vgoitem.setName(name);
-            vgoitem.setOp7day(prices.get(name).getOp7Day());
-            vgoitem.setOp7day(prices.get(name).getOp30Day());
-            vgoItemService.save(vgoitem);
+            try {
+                Vgoitem vgoitem = new Vgoitem();
+                vgoitem.setName(name);
+                vgoitem.setOp7day(prices.get(name).getOp7Day());
+                vgoitem.setOp7day(prices.get(name).getOp30Day());
+                vgoItemService.save(vgoitem);                    
+            } catch (Exception e) {
+                log.debug("Failed to save: " + e.getMessage());
+            }
         }
     }
 
