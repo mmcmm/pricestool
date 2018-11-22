@@ -16,7 +16,6 @@ import com.pricestool.pricestool.domain.Vgoitem;
 import com.pricestool.pricestool.service.dto.opdto.*;
 import java.util.*;
 
-
 @Service
 @Transactional
 public class OpskinsService {
@@ -27,12 +26,10 @@ public class OpskinsService {
     private final Logger log = LoggerFactory.getLogger(OpskinsService.class);
 
     final String OP_ITEMS_API_URL = "https://api-trade.opskins.com/IItem/GetItems/v1/?key=";
-   
+
     final String OP_PRICES_API_URL = "https://api.opskins.com/IPricing/GetSuggestedPrices/v2/?appid=1912";
 
-
     private final VgoitemService vgoItemService;
-
 
     public OpskinsService(VgoitemService vgoItemService) {
         this.vgoItemService = vgoItemService;
@@ -46,12 +43,12 @@ public class OpskinsService {
         // get all normal items
         Map<String, Price> prices = callEndpoint(OP_PRICES_API_URL).getResponse();
         for (String name : prices.keySet()) {
-            Vgoitem vgoitem = new Vgoitem(); 
+            Vgoitem vgoitem = new Vgoitem();
             vgoitem.setName(name);
-            vgoitem.setOp7day(prices.get(name).getOp7Day());        
+            vgoitem.setOp7day(prices.get(name).getOp7Day());
             vgoitem.setOp7day(prices.get(name).getOp30Day());
-            // vgoItemService.save(vgoitem);        
-        } 
+            vgoItemService.save(vgoitem);
+        }
     }
 
     private OpskinsDTO callEndpoint(String endpoint) {
@@ -60,7 +57,8 @@ public class OpskinsService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
-        headers.set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36");
+        headers.set("User-Agent",
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36");
         HttpEntity<String> entityOP = new HttpEntity<>("parameters", headers);
         ResponseEntity<OpskinsDTO> respEntityOP;
         OpskinsDTO opresp = null;
@@ -82,7 +80,7 @@ public class OpskinsService {
             if (converter instanceof MappingJackson2HttpMessageConverter) {
                 try {
                     ((MappingJackson2HttpMessageConverter) converter)
-                        .setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
+                            .setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
                 } catch (Exception ex) {
                     log.error("Failed to add text converter: " + ex.getMessage());
                 }
