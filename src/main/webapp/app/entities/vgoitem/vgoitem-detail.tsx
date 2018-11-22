@@ -33,41 +33,13 @@ export class VgoitemDetail extends React.Component<IVgoitemDetailProps> {
             </dt>
             <dd>{vgoitemEntity.name}</dd>
             <dt>
-              <span id="category">Category</span>
+              <span id="op7day">Op 7 Day</span>
             </dt>
-            <dd>{vgoitemEntity.category}</dd>
+            <dd>{vgoitemEntity.op7day}</dd>
             <dt>
-              <span id="rarity">Rarity</span>
+              <span id="op30day">Op 30 Day</span>
             </dt>
-            <dd>{vgoitemEntity.rarity}</dd>
-            <dt>
-              <span id="type">Type</span>
-            </dt>
-            <dd>{vgoitemEntity.type}</dd>
-            <dt>
-              <span id="color">Color</span>
-            </dt>
-            <dd>{vgoitemEntity.color}</dd>
-            <dt>
-              <span id="image300px">Image 300 Px</span>
-            </dt>
-            <dd>{vgoitemEntity.image300px}</dd>
-            <dt>
-              <span id="image600px">Image 600 Px</span>
-            </dt>
-            <dd>{vgoitemEntity.image600px}</dd>
-            <dt>
-              <span id="suggestedPrice">Suggested Price</span>
-            </dt>
-            <dd>{vgoitemEntity.suggestedPrice}</dd>
-            <dt>
-              <span id="suggestedPrice7day">Suggested Price 7 Day</span>
-            </dt>
-            <dd>{vgoitemEntity.suggestedPrice7day}</dd>
-            <dt>
-              <span id="suggestedPrice30day">Suggested Price 30 Day</span>
-            </dt>
-            <dd>{vgoitemEntity.suggestedPrice30day}</dd>
+            <dd>{vgoitemEntity.op30day}</dd>
           </dl>
           <Button tag={Link} to="/entity/vgoitem" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

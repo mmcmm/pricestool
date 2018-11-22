@@ -1,5 +1,3 @@
-import './vgoitem.scss';
-
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
@@ -118,16 +116,14 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
             <Table responsive>
               <thead>
                 <tr>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th className="hand" onClick={this.sort('suggestedPrice')}>
-                    Price <FontAwesomeIcon icon="sort" />
+                  <th className="hand" onClick={this.sort('name')}>
+                    Name <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('suggestedPrice7day')}>
-                    Price 7 <FontAwesomeIcon icon="sort" />
+                  <th className="hand" onClick={this.sort('op7day')}>
+                    Op 7 Day <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('suggestedPrice30day')}>
-                    Price 30 <FontAwesomeIcon icon="sort" />
+                  <th className="hand" onClick={this.sort('op30day')}>
+                    Op 30 Day <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -136,16 +132,10 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
                 {vgoitemList.map((vgoitem, i) => (
                   <tr key={`entity-${i}`}>
                     <td>
-                      <Link to={`${match.url}/${vgoitem.id}`}>
-                        <img src={vgoitem.image300px} className="vgoimage" />
-                      </Link>
-                    </td>
-                    <td>
                       <Link to={`${match.url}/${vgoitem.id}`}>{vgoitem.name}</Link>
                     </td>
-                    <td>{vgoitem.suggestedPrice}</td>
-                    <td>{vgoitem.suggestedPrice7day}</td>
-                    <td>{vgoitem.suggestedPrice30day}</td>
+                    <td>{vgoitem.op7day}</td>
+                    <td>{vgoitem.op30day}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button

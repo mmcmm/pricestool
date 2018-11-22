@@ -26,23 +26,9 @@ public class VgoitemCriteria implements Serializable {
 
     private StringFilter name;
 
-    private StringFilter category;
+    private IntegerFilter op7day;
 
-    private StringFilter rarity;
-
-    private StringFilter type;
-
-    private StringFilter color;
-
-    private StringFilter image300px;
-
-    private StringFilter image600px;
-
-    private IntegerFilter suggestedPrice;
-
-    private IntegerFilter suggestedPrice7day;
-
-    private IntegerFilter suggestedPrice30day;
+    private IntegerFilter op30day;
 
     public VgoitemCriteria() {
     }
@@ -63,76 +49,20 @@ public class VgoitemCriteria implements Serializable {
         this.name = name;
     }
 
-    public StringFilter getCategory() {
-        return category;
+    public IntegerFilter getOp7day() {
+        return op7day;
     }
 
-    public void setCategory(StringFilter category) {
-        this.category = category;
+    public void setOp7day(IntegerFilter op7day) {
+        this.op7day = op7day;
     }
 
-    public StringFilter getRarity() {
-        return rarity;
+    public IntegerFilter getOp30day() {
+        return op30day;
     }
 
-    public void setRarity(StringFilter rarity) {
-        this.rarity = rarity;
-    }
-
-    public StringFilter getType() {
-        return type;
-    }
-
-    public void setType(StringFilter type) {
-        this.type = type;
-    }
-
-    public StringFilter getColor() {
-        return color;
-    }
-
-    public void setColor(StringFilter color) {
-        this.color = color;
-    }
-
-    public StringFilter getImage300px() {
-        return image300px;
-    }
-
-    public void setImage300px(StringFilter image300px) {
-        this.image300px = image300px;
-    }
-
-    public StringFilter getImage600px() {
-        return image600px;
-    }
-
-    public void setImage600px(StringFilter image600px) {
-        this.image600px = image600px;
-    }
-
-    public IntegerFilter getSuggestedPrice() {
-        return suggestedPrice;
-    }
-
-    public void setSuggestedPrice(IntegerFilter suggestedPrice) {
-        this.suggestedPrice = suggestedPrice;
-    }
-
-    public IntegerFilter getSuggestedPrice7day() {
-        return suggestedPrice7day;
-    }
-
-    public void setSuggestedPrice7day(IntegerFilter suggestedPrice7day) {
-        this.suggestedPrice7day = suggestedPrice7day;
-    }
-
-    public IntegerFilter getSuggestedPrice30day() {
-        return suggestedPrice30day;
-    }
-
-    public void setSuggestedPrice30day(IntegerFilter suggestedPrice30day) {
-        this.suggestedPrice30day = suggestedPrice30day;
+    public void setOp30day(IntegerFilter op30day) {
+        this.op30day = op30day;
     }
 
 
@@ -148,15 +78,8 @@ public class VgoitemCriteria implements Serializable {
         return
             Objects.equals(id, that.id) &&
             Objects.equals(name, that.name) &&
-            Objects.equals(category, that.category) &&
-            Objects.equals(rarity, that.rarity) &&
-            Objects.equals(type, that.type) &&
-            Objects.equals(color, that.color) &&
-            Objects.equals(image300px, that.image300px) &&
-            Objects.equals(image600px, that.image600px) &&
-            Objects.equals(suggestedPrice, that.suggestedPrice) &&
-            Objects.equals(suggestedPrice7day, that.suggestedPrice7day) &&
-            Objects.equals(suggestedPrice30day, that.suggestedPrice30day);
+            Objects.equals(op7day, that.op7day) &&
+            Objects.equals(op30day, that.op30day);
     }
 
     @Override
@@ -164,15 +87,8 @@ public class VgoitemCriteria implements Serializable {
         return Objects.hash(
         id,
         name,
-        category,
-        rarity,
-        type,
-        color,
-        image300px,
-        image600px,
-        suggestedPrice,
-        suggestedPrice7day,
-        suggestedPrice30day
+        op7day,
+        op30day
         );
     }
 
@@ -181,15 +97,8 @@ public class VgoitemCriteria implements Serializable {
         return "VgoitemCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
                 (name != null ? "name=" + name + ", " : "") +
-                (category != null ? "category=" + category + ", " : "") +
-                (rarity != null ? "rarity=" + rarity + ", " : "") +
-                (type != null ? "type=" + type + ", " : "") +
-                (color != null ? "color=" + color + ", " : "") +
-                (image300px != null ? "image300px=" + image300px + ", " : "") +
-                (image600px != null ? "image600px=" + image600px + ", " : "") +
-                (suggestedPrice != null ? "suggestedPrice=" + suggestedPrice + ", " : "") +
-                (suggestedPrice7day != null ? "suggestedPrice7day=" + suggestedPrice7day + ", " : "") +
-                (suggestedPrice30day != null ? "suggestedPrice30day=" + suggestedPrice30day + ", " : "") +
+                (op7day != null ? "op7day=" + op7day + ", " : "") +
+                (op30day != null ? "op30day=" + op30day + ", " : "") +
             "}";
     }
 

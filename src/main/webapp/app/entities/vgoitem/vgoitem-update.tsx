@@ -98,112 +98,16 @@ export class VgoitemUpdate extends React.Component<IVgoitemUpdateProps, IVgoitem
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="categoryLabel" for="category">
-                    Category
+                  <Label id="op7dayLabel" for="op7day">
+                    Op 7 Day
                   </Label>
-                  <AvField
-                    id="vgoitem-category"
-                    type="text"
-                    name="category"
-                    validate={{
-                      required: { value: true, errorMessage: 'This field is required.' },
-                      maxLength: { value: 255, errorMessage: 'This field cannot be longer than 255 characters.' }
-                    }}
-                  />
+                  <AvField id="vgoitem-op7day" type="string" className="form-control" name="op7day" />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="rarityLabel" for="rarity">
-                    Rarity
+                  <Label id="op30dayLabel" for="op30day">
+                    Op 30 Day
                   </Label>
-                  <AvField
-                    id="vgoitem-rarity"
-                    type="text"
-                    name="rarity"
-                    validate={{
-                      required: { value: true, errorMessage: 'This field is required.' },
-                      maxLength: { value: 255, errorMessage: 'This field cannot be longer than 255 characters.' }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="typeLabel" for="type">
-                    Type
-                  </Label>
-                  <AvField
-                    id="vgoitem-type"
-                    type="text"
-                    name="type"
-                    validate={{
-                      required: { value: true, errorMessage: 'This field is required.' },
-                      maxLength: { value: 255, errorMessage: 'This field cannot be longer than 255 characters.' }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="colorLabel" for="color">
-                    Color
-                  </Label>
-                  <AvField
-                    id="vgoitem-color"
-                    type="text"
-                    name="color"
-                    validate={{
-                      maxLength: { value: 20, errorMessage: 'This field cannot be longer than 20 characters.' }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="image300pxLabel" for="image300px">
-                    Image 300 Px
-                  </Label>
-                  <AvField
-                    id="vgoitem-image300px"
-                    type="text"
-                    name="image300px"
-                    validate={{
-                      maxLength: { value: 255, errorMessage: 'This field cannot be longer than 255 characters.' }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="image600pxLabel" for="image600px">
-                    Image 600 Px
-                  </Label>
-                  <AvField
-                    id="vgoitem-image600px"
-                    type="text"
-                    name="image600px"
-                    validate={{
-                      maxLength: { value: 255, errorMessage: 'This field cannot be longer than 255 characters.' }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="suggestedPriceLabel" for="suggestedPrice">
-                    Suggested Price
-                  </Label>
-                  <AvField
-                    id="vgoitem-suggestedPrice"
-                    type="string"
-                    className="form-control"
-                    name="suggestedPrice"
-                    validate={{
-                      required: { value: true, errorMessage: 'This field is required.' },
-                      number: { value: true, errorMessage: 'This field should be a number.' }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="suggestedPrice7dayLabel" for="suggestedPrice7day">
-                    Suggested Price 7 Day
-                  </Label>
-                  <AvField id="vgoitem-suggestedPrice7day" type="string" className="form-control" name="suggestedPrice7day" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="suggestedPrice30dayLabel" for="suggestedPrice30day">
-                    Suggested Price 30 Day
-                  </Label>
-                  <AvField id="vgoitem-suggestedPrice30day" type="string" className="form-control" name="suggestedPrice30day" />
+                  <AvField id="vgoitem-op30day" type="string" className="form-control" name="op30day" />
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/vgoitem" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />

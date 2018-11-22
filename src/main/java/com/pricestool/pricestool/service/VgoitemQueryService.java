@@ -90,32 +90,11 @@ public class VgoitemQueryService extends QueryService<Vgoitem> {
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), Vgoitem_.name));
             }
-            if (criteria.getCategory() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getCategory(), Vgoitem_.category));
+            if (criteria.getOp7day() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getOp7day(), Vgoitem_.op7day));
             }
-            if (criteria.getRarity() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getRarity(), Vgoitem_.rarity));
-            }
-            if (criteria.getType() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getType(), Vgoitem_.type));
-            }
-            if (criteria.getColor() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getColor(), Vgoitem_.color));
-            }
-            if (criteria.getImage300px() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getImage300px(), Vgoitem_.image300px));
-            }
-            if (criteria.getImage600px() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getImage600px(), Vgoitem_.image600px));
-            }
-            if (criteria.getSuggestedPrice() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getSuggestedPrice(), Vgoitem_.suggestedPrice));
-            }
-            if (criteria.getSuggestedPrice7day() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getSuggestedPrice7day(), Vgoitem_.suggestedPrice7day));
-            }
-            if (criteria.getSuggestedPrice30day() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getSuggestedPrice30day(), Vgoitem_.suggestedPrice30day));
+            if (criteria.getOp30day() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getOp30day(), Vgoitem_.op30day));
             }
         }
         return specification;

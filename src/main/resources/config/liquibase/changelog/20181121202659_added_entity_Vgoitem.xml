@@ -25,39 +25,11 @@
                 <constraints nullable="false" unique="true" uniqueConstraintName="ux_vgoitem_name" />
             </column>
 
-            <column name="category" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="rarity" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="jhi_type" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="color" type="varchar(20)">
+            <column name="op_7_day" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="image_300_px" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="image_600_px" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="suggested_price" type="integer">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="suggested_price_7_day" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="suggested_price_30_day" type="integer">
+            <column name="op_30_day" type="integer">
                 <constraints nullable="true" />
             </column>
 
