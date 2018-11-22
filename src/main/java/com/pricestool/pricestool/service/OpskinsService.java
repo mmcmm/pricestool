@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import com.pricestool.pricestool.service.dto.resp.*;
+import com.pricestool.pricestool.service.dto.opdto.*;
 import java.util.*;
 
 
@@ -24,9 +24,9 @@ public class OpskinsService {
 
     private final Logger log = LoggerFactory.getLogger(OpskinsService.class);
 
-    final String OP_ITEMS_API_URL = "https://api-trade.opskins.com/IItem/GetItems/v1/?key=" + OP_API_KEY;
+    final String OP_ITEMS_API_URL = "https://api-trade.opskins.com/IItem/GetItems/v1/?key=";
    
-    final String OP_PRICES_API_URL = "https://api.opskins.com/IPricing/GetSuggestedPrices/v2/?appid=1912&key=" + OP_API_KEY;
+    final String OP_PRICES_API_URL = "https://api.opskins.com/IPricing/GetSuggestedPrices/v2/?appid=1912&key=";
 
 
     private final VgoitemService vgoItemService;
@@ -37,10 +37,12 @@ public class OpskinsService {
     }
 
     @Async
-    @Scheduled(cron = "0 */15 * * * *") // 15
+    @Scheduled(cron = "0 */2 * * * *") // 5
     public void updateItems() {
         log.debug("Run scheduled opskins  update items {}");
 
+        // get all normal items
+        callEndpoint(OP_ITEMS_API_URL+OP_API_KEY);
 
     }
 
@@ -59,7 +61,7 @@ public class OpskinsService {
             respEntityOP = restTemplate.exchange(endpoint, HttpMethod.GET, entityOP, OpskinsDTO.class);
             opresp = respEntityOP.getBody();
         } catch (Exception ex) {
-            log.error("Failed to fetch OPSkins data", ex.getMessage());
+            log.error("Failed to fetch OPSkins data: " + ex.getMessage());
         }
         return opresp;
 
@@ -74,7 +76,7 @@ public class OpskinsService {
                     ((MappingJackson2HttpMessageConverter) converter)
                         .setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
                 } catch (Exception ex) {
-                    log.error("Failed to add text converter", ex.getMessage());
+                    log.error("Failed to add text converter: " + ex.getMessage());
                 }
             }
         }

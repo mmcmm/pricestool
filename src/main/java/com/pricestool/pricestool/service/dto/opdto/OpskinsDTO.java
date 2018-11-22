@@ -1,4 +1,4 @@
-package com.pricestool.pricestool.service.dto.resp;
+package com.pricestool.pricestool.service.dto.opdto;
 
 import java.io.Serializable;
 import java.time.Instant;
