@@ -36,7 +36,7 @@ public class OpskinsService {
     }
 
     @Async
-    @Scheduled(cron = "0 */5 * * * *") // 5
+    @Scheduled(cron = "0 */5 * * * *") // 15
     public void updateItems() {
         log.debug("Run scheduled opskins  update items {}");
 
@@ -44,6 +44,7 @@ public class OpskinsService {
         Map<String, Price> prices = callEndpoint(OP_PRICES_API_URL).getResponse();
         for (String name : prices.keySet()) {
             try {
+                vgoItemService.deleteAll();
                 Vgoitem vgoitem = new Vgoitem();
                 vgoitem.setName(name);
                 vgoitem.setOp7day(prices.get(name).getOp7Day());
