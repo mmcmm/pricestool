@@ -48,7 +48,7 @@ public class OpskinsService {
                 Vgoitem vgoitem = new Vgoitem();
                 vgoitem.setName(name);
                 vgoitem.setOp7day(prices.get(name).getOp7Day());
-                vgoitem.setOp30Day(prices.get(name).getOp30Day());
+                vgoitem.setOp30day(prices.get(name).getOp30Day());
                 vgoItemService.save(vgoitem);                    
             } catch (Exception e) {
                 log.debug("Failed to save: " + e.getMessage());
