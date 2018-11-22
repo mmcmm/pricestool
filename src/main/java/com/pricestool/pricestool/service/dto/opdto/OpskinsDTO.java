@@ -1,34 +1,32 @@
 package com.pricestool.pricestool.service.dto.opdto;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A DTO for the opskins response.
  */
 public class OpskinsDTO implements Serializable {
 
-    private int status;
-
+    private String note;
+    private long status;
     private long time;
+    private Map<String, Price> response;
 
-    private HashMap<String, HashMap<String, HashMap<String, HashMap<String, OpskinsItem>>>> response;
+    public String getNote() {
+        return note;
+    }
 
-    public int getStatus() {
+    public void setNote(String value) {
+        this.note = value;
+    }
+
+    public long getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    private HashMap<String, HashMap<String, HashMap<String, HashMap<String, OpskinsItem>>>> getResponse() {
-        return response;
-    }
-
-    public void setResponse(HashMap<String, HashMap<String, HashMap<String, HashMap<String, OpskinsItem>>>> response) {
-        this.response = response;
+    public void setStatus(long value) {
+        this.status = value;
     }
 
     public long getTime() {
@@ -37,5 +35,13 @@ public class OpskinsDTO implements Serializable {
 
     public void setTime(long value) {
         this.time = value;
+    }
+
+    public Map<String, Price> getResponse() {
+        return response;
+    }
+
+    public void setResponse(Map<String, Price> value) {
+        this.response = value;
     }
 }

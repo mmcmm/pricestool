@@ -11,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+
+import com.pricestool.pricestool.domain.Vgoitem;
 import com.pricestool.pricestool.service.dto.opdto.*;
 import java.util.*;
 
@@ -42,8 +44,14 @@ public class OpskinsService {
         log.debug("Run scheduled opskins  update items {}");
 
         // get all normal items
-        callEndpoint(OP_ITEMS_API_URL+OP_API_KEY);
-
+        Map<String, Price> prices = callEndpoint(OP_ITEMS_API_URL+OP_API_KEY).getResponse();
+        for (String name : prices.keySet()) {
+            Vgoitem vgoitem = new Vgoitem(); 
+            vgoitem.setName(name);
+            vgoitem.setOp7day(prices.get(name).getOp7Day());        
+            vgoitem.setOp7day(prices.get(name).getOp30Day());
+            vgoItemService.save(vgoitem);        
+        } 
     }
 
     private OpskinsDTO callEndpoint(String endpoint) {
