@@ -36,7 +36,7 @@ public class OpskinsService {
     }
 
     @Async
-    @Scheduled(cron = "0 */2 * * * *") // 5
+    @Scheduled(cron = "0 */5 * * * *") // 5
     public void updateItems() {
         log.debug("Run scheduled opskins  update items {}");
 
