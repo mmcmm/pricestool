@@ -48,8 +48,8 @@ public class OpskinsService {
         for (String name : prices.keySet()) {
             Vgoitem vgoitem = new Vgoitem(); 
             vgoitem.setName(name);
-            vgoitem.setOp7day(prices.get(name).get_op_7_day());        
-            vgoitem.setOp7day(prices.get(name).get_op_30_day());
+            vgoitem.setOp7day(prices.get(name).getOp7Day());        
+            vgoitem.setOp7day(prices.get(name).getOp30Day());
             // vgoItemService.save(vgoitem);        
         } 
     }
