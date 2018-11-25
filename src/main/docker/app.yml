@@ -8,6 +8,8 @@ services:
             - SPRING_DATASOURCE_URL=jdbc:postgresql://pricestool-postgresql:5432/pricestool
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
             - SPRING_DATA_JEST_URI=http://pricestool-elasticsearch:9200
+            - POSTGRES_USER=pricestool
+            - POSTGRES_PASSWORD=
         ports:
             - 8080:8080
     pricestool-postgresql:
