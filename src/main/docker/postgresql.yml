@@ -2,8 +2,8 @@ version: '2'
 services:
     pricestool-postgresql:
         image: postgres:10.4
-        # volumes:
-        #     - ~/volumes/jhipster/pricestool/postgresql/:/var/lib/postgresql/data/
+        volumes:
+            - ~/volumes/jhipster/pricestool/postgresql/:/var/lib/postgresql/data/
         environment:
             - POSTGRES_USER=pricestool
             - POSTGRES_PASSWORD=
