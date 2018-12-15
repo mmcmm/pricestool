@@ -159,7 +159,7 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
                     </td>
                     <td>${this.money(vgoitem.op7day / 100)}</td>
                     <td>${this.money(vgoitem.op30day / 100)}</td>
-                    <td>{vgoitem.sales}</td>
+                    <td>{vgoitem.sales < 20 ? vgoitem.sales : vgoitem.sales + '+'}</td>
                     <td>{vgoitem.qty}</td>
                     <td>${this.money(vgoitem.minPrice / 100)}</td>
                     <td className="text-right">

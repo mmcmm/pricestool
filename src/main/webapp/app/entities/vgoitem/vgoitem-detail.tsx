@@ -49,7 +49,7 @@ export class VgoitemDetail extends React.Component<IVgoitemDetailProps> {
             <dt>
               <span id="sales">7 Days Sales Nr.</span>
             </dt>
-            <dd>{vgoitemEntity.sales}</dd>
+            <dd>{vgoitemEntity.sales < 20 ? vgoitemEntity.sales : vgoitemEntity.sales + '+'}</dd>
             <dt>
               <span id="qty">Listed Quantity</span>
             </dt>
