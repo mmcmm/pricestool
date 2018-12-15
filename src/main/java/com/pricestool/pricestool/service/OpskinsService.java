@@ -17,6 +17,8 @@ import com.pricestool.pricestool.domain.Vgoitem;
 import com.pricestool.pricestool.service.dto.lowprice.LowPriceDTO;
 import com.pricestool.pricestool.service.dto.lowprice.LowPriceItem;
 import com.pricestool.pricestool.service.dto.opdto.*;
+import com.pricestool.pricestool.service.dto.sales.SalesDTO;
+
 import java.util.*;
 
 @Service
@@ -52,11 +54,16 @@ public class OpskinsService {
             vgoItemService.deleteAll();
             for (String name : prices.keySet()) {
                 Vgoitem vgoitem = new Vgoitem();
+                Price item = prices.get(name);
                 vgoitem.setName(name);
-                vgoitem.setOp7day(prices.get(name).getOp7Day());
-                vgoitem.setOp30day(prices.get(name).getOp30Day());
+                vgoitem.setOp7day(item.getOp7Day());
+                vgoitem.setOp30day(item.getOp30Day());
 
                 // get sales number
+                SalesDTO sales = opSaleData(name);
+                if (sales != null) {
+                    vgoitem.setSales(sales.getResponse().length);
+                }
 
                 vgoItemService.save(vgoitem);
             }
@@ -143,7 +150,7 @@ public class OpskinsService {
         return opresp;
     }
 
-    private LowPriceDTO opSaleData(String name) {
+    private SalesDTO opSaleData(String name) {
         try {
             final String endpoint = "https://api.opskins.com/ISales/GetLastSales/v1/?appid=730&market_name="
                     + URLEncoder.encode(name, "UTF-8") + "&contextid=2&key=afc99418b41514a559d55200099a12";
@@ -154,10 +161,10 @@ public class OpskinsService {
             headers.set("User-Agent", USER_AGENT);
 
             HttpEntity<String> entityOP = new HttpEntity<>("parameters", headers);
-            ResponseEntity<LowPriceDTO> respEntityOP;
-            LowPriceDTO opresp = null;
+            ResponseEntity<SalesDTO> respEntityOP;
+            SalesDTO opresp = null;
 
-            respEntityOP = restTemplate.exchange(OP_LOW_PRICES_API_URL, HttpMethod.GET, entityOP, LowPriceDTO.class);
+            respEntityOP = restTemplate.exchange(endpoint, HttpMethod.GET, entityOP, SalesDTO.class);
             opresp = respEntityOP.getBody();
             return opresp;
         } catch (Exception ex) {
