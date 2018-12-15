@@ -30,16 +30,11 @@ public class VgoitemCriteria implements Serializable {
 
     private IntegerFilter op30day;
 
-<<<<<<< HEAD
-    public VgoitemCriteria() {
-    }
-=======
     private IntegerFilter sales;
 
     private IntegerFilter qty;
 
     private IntegerFilter minPrice;
->>>>>>> jhipster_upgrade
 
     public LongFilter getId() {
         return id;

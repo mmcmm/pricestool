@@ -1,12 +1,8 @@
 ######################
 # Project Specific
 ######################
-<<<<<<< HEAD
-/build/www/**
-=======
 /src/main/webapp/content/css/main.css
 /target/www/**
->>>>>>> jhipster_upgrade
 /src/test/javascript/coverage/
 
 ######################
