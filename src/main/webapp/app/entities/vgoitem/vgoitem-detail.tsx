@@ -19,6 +19,12 @@ export class VgoitemDetail extends React.Component<IVgoitemDetailProps> {
     this.props.getEntity(this.props.match.params.id);
   }
 
+  money = (amount: number) =>
+    amount
+      .toFixed(2)
+      .replace(/\d(?=(\d{3})+\.)/g, '$&,')
+      .replace('.00', '');
+
   render() {
     const { vgoitemEntity } = this.props;
     return (
@@ -35,11 +41,11 @@ export class VgoitemDetail extends React.Component<IVgoitemDetailProps> {
             <dt>
               <span id="op7day">Suggested Price (Op 7 Day Price)</span>
             </dt>
-            <dd>{vgoitemEntity.op7day}</dd>
+            <dd>${this.money(vgoitemEntity.op7day / 100)}</dd>
             <dt>
               <span id="op30day">Op 30 Day Price</span>
             </dt>
-            <dd>{vgoitemEntity.op30day}</dd>
+            <dd>${this.money(vgoitemEntity.op30day / 100)}</dd>
             <dt>
               <span id="sales">7 Days Sales Nr.</span>
             </dt>
@@ -51,7 +57,7 @@ export class VgoitemDetail extends React.Component<IVgoitemDetailProps> {
             <dt>
               <span id="minPrice">Minimum Price</span>
             </dt>
-            <dd>{vgoitemEntity.minPrice}</dd>
+            <dd>${this.money(vgoitemEntity.minPrice / 100)}</dd>
           </dl>
           <Button tag={Link} to="/entity/vgoitem" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

@@ -29,6 +29,8 @@ public class OpskinsService {
 
     final String OP_PRICES_API_URL = "https://api.opskins.com/IPricing/GetSuggestedPrices/v2/?appid=1912";
 
+    final String OP_LOW_PRICES_API_URL = "https://api.opskins.com/IPricing/GetAllLowestListPrices/v1?appid=1912";
+
     private final VgoitemService vgoItemService;
 
     public OpskinsService(VgoitemService vgoItemService) {
