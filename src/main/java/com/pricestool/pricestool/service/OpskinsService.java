@@ -43,23 +43,25 @@ public class OpskinsService {
     }
 
     @Async
-    @Scheduled(cron = "0 */15 * * * *") // 15
+    @Scheduled(cron = "0 */1 * * * *") // 0 0 */8 * * * TODO:
     public void updateItems() {
         log.debug("Run scheduled opskins  update items {}");
-
-        // get all normal items
-        Map<String, Price> prices = callEndpoint(OP_PRICES_API_URL).getResponse();
-        vgoItemService.deleteAll();
-        for (String name : prices.keySet()) {
-            try {
+        try {
+            // get all normal items
+            Map<String, Price> prices = callEndpoint(OP_PRICES_API_URL).getResponse();
+            vgoItemService.deleteAll();
+            for (String name : prices.keySet()) {
                 Vgoitem vgoitem = new Vgoitem();
                 vgoitem.setName(name);
                 vgoitem.setOp7day(prices.get(name).getOp7Day());
                 vgoitem.setOp30day(prices.get(name).getOp30Day());
+
+                // get sales number
+
                 vgoItemService.save(vgoitem);
-            } catch (Exception e) {
-                log.debug("Failed to save: " + e.getMessage());
             }
+        } catch (Exception e) {
+            log.debug("Failed to save: " + e.getMessage());
         }
     }
 
