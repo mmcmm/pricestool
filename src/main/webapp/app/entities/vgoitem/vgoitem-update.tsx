@@ -109,6 +109,24 @@ export class VgoitemUpdate extends React.Component<IVgoitemUpdateProps, IVgoitem
                   </Label>
                   <AvField id="vgoitem-op30day" type="string" className="form-control" name="op30day" />
                 </AvGroup>
+                <AvGroup>
+                  <Label id="salesLabel" for="sales">
+                    Sales
+                  </Label>
+                  <AvField id="vgoitem-sales" type="string" className="form-control" name="sales" />
+                </AvGroup>
+                <AvGroup>
+                  <Label id="qtyLabel" for="qty">
+                    Qty
+                  </Label>
+                  <AvField id="vgoitem-qty" type="string" className="form-control" name="qty" />
+                </AvGroup>
+                <AvGroup>
+                  <Label id="minPriceLabel" for="minPrice">
+                    Min Price
+                  </Label>
+                  <AvField id="vgoitem-minPrice" type="string" className="form-control" name="minPrice" />
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/vgoitem" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;

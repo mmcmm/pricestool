@@ -33,13 +33,25 @@ export class VgoitemDetail extends React.Component<IVgoitemDetailProps> {
             </dt>
             <dd>{vgoitemEntity.name}</dd>
             <dt>
-              <span id="op7day">Op 7 Day</span>
+              <span id="op7day">Suggested Price (Op 7 Day Price)</span>
             </dt>
             <dd>{vgoitemEntity.op7day}</dd>
             <dt>
-              <span id="op30day">Op 30 Day</span>
+              <span id="op30day">Op 30 Day Price</span>
             </dt>
             <dd>{vgoitemEntity.op30day}</dd>
+            <dt>
+              <span id="sales">7 Days Sales Nr.</span>
+            </dt>
+            <dd>{vgoitemEntity.sales}</dd>
+            <dt>
+              <span id="qty">Listed Quantity</span>
+            </dt>
+            <dd>{vgoitemEntity.qty}</dd>
+            <dt>
+              <span id="minPrice">Minimum Price</span>
+            </dt>
+            <dd>{vgoitemEntity.minPrice}</dd>
           </dl>
           <Button tag={Link} to="/entity/vgoitem" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

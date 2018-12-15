@@ -103,6 +103,4 @@ public class VgoitemService {
     public Page<Vgoitem> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Vgoitems for query {}", query);
         return vgoitemSearchRepository.search(queryStringQuery(query), pageable);    }
-
-
 }

@@ -68,6 +68,30 @@ public class VgoitemCriteria implements Serializable {
         this.op30day = op30day;
     }
 
+    public IntegerFilter getSales() {
+        return sales;
+    }
+
+    public void setSales(IntegerFilter sales) {
+        this.sales = sales;
+    }
+
+    public IntegerFilter getQty() {
+        return qty;
+    }
+
+    public void setQty(IntegerFilter qty) {
+        this.qty = qty;
+    }
+
+    public IntegerFilter getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(IntegerFilter minPrice) {
+        this.minPrice = minPrice;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -82,7 +106,10 @@ public class VgoitemCriteria implements Serializable {
             Objects.equals(id, that.id) &&
             Objects.equals(name, that.name) &&
             Objects.equals(op7day, that.op7day) &&
-            Objects.equals(op30day, that.op30day);
+            Objects.equals(op30day, that.op30day) &&
+            Objects.equals(sales, that.sales) &&
+            Objects.equals(qty, that.qty) &&
+            Objects.equals(minPrice, that.minPrice);
     }
 
     @Override
@@ -91,7 +118,10 @@ public class VgoitemCriteria implements Serializable {
         id,
         name,
         op7day,
-        op30day
+        op30day,
+        sales,
+        qty,
+        minPrice
         );
     }
 
@@ -102,6 +132,9 @@ public class VgoitemCriteria implements Serializable {
                 (name != null ? "name=" + name + ", " : "") +
                 (op7day != null ? "op7day=" + op7day + ", " : "") +
                 (op30day != null ? "op30day=" + op30day + ", " : "") +
+                (sales != null ? "sales=" + sales + ", " : "") +
+                (qty != null ? "qty=" + qty + ", " : "") +
+                (minPrice != null ? "minPrice=" + minPrice + ", " : "") +
             "}";
     }
 

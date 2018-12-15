@@ -96,6 +96,15 @@ public class VgoitemQueryService extends QueryService<Vgoitem> {
             if (criteria.getOp30day() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getOp30day(), Vgoitem_.op30day));
             }
+            if (criteria.getSales() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getSales(), Vgoitem_.sales));
+            }
+            if (criteria.getQty() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getQty(), Vgoitem_.qty));
+            }
+            if (criteria.getMinPrice() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getMinPrice(), Vgoitem_.minPrice));
+            }
         }
         return specification;
     }

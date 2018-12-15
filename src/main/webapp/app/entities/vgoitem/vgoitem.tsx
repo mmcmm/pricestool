@@ -134,10 +134,19 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
                     Name <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('op7day')}>
-                    Op 7 Day <FontAwesomeIcon icon="sort" />
+                    S. Price <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('op30day')}>
                     Op 30 Day <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('sales')}>
+                    Sales <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('qty')}>
+                    Qty <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('minPrice')}>
+                    Min Price <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -150,6 +159,9 @@ export class Vgoitem extends React.Component<IVgoitemProps, IVgoitemState> {
                     </td>
                     <td>${this.money(vgoitem.op7day / 100)}</td>
                     <td>${this.money(vgoitem.op30day / 100)}</td>
+                    <td>${vgoitem.sales}</td>
+                    <td>${vgoitem.qty}</td>
+                    <td>${this.money(vgoitem.minPrice / 100)}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <a href={`https://opskins.com/?app=1912_1&loc=shop_search&search_item=${vgoitem.name}&sort=lh`} target="_blank">

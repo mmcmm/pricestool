@@ -37,6 +37,15 @@ public class Vgoitem implements Serializable {
     @Column(name = "op_30_day")
     private Integer op30day;
 
+    @Column(name = "sales")
+    private Integer sales;
+
+    @Column(name = "qty")
+    private Integer qty;
+
+    @Column(name = "min_price")
+    private Integer minPrice;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -84,6 +93,45 @@ public class Vgoitem implements Serializable {
     public void setOp30day(Integer op30day) {
         this.op30day = op30day;
     }
+
+    public Integer getSales() {
+        return sales;
+    }
+
+    public Vgoitem sales(Integer sales) {
+        this.sales = sales;
+        return this;
+    }
+
+    public void setSales(Integer sales) {
+        this.sales = sales;
+    }
+
+    public Integer getQty() {
+        return qty;
+    }
+
+    public Vgoitem qty(Integer qty) {
+        this.qty = qty;
+        return this;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
+    }
+
+    public Integer getMinPrice() {
+        return minPrice;
+    }
+
+    public Vgoitem minPrice(Integer minPrice) {
+        this.minPrice = minPrice;
+        return this;
+    }
+
+    public void setMinPrice(Integer minPrice) {
+        this.minPrice = minPrice;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -113,6 +161,9 @@ public class Vgoitem implements Serializable {
             ", name='" + getName() + "'" +
             ", op7day=" + getOp7day() +
             ", op30day=" + getOp30day() +
+            ", sales=" + getSales() +
+            ", qty=" + getQty() +
+            ", minPrice=" + getMinPrice() +
             "}";
     }
 }

@@ -33,6 +33,18 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="sales" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="qty" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="min_price" type="integer">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
