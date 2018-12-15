@@ -12,12 +12,24 @@
             ],
             "fieldValidateRulesMaxlength": "255"
         },
-        {
+    {
             "fieldName": "op7day",
             "fieldType": "Integer"
         },
         {
             "fieldName": "op30day",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sales",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "qty",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "minPrice",
             "fieldType": "Integer"
         }
     ],
