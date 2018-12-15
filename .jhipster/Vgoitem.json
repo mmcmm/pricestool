@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+    {
+            "fieldName": "op7day",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "op30day",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sales",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "qty",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "minPrice",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20181121202659",
+    "dto": "no",
+    "searchEngine": "elasticsearch",
+    "service": "serviceClass",
+    "entityTableName": "vgoitem",
+    "jpaMetamodelFiltering": true,
+    "pagination": "infinite-scroll"
+}
