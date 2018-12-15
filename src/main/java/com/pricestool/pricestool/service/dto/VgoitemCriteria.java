@@ -36,9 +36,6 @@ public class VgoitemCriteria implements Serializable {
 
     private IntegerFilter minPrice;
 
-    public VgoitemCriteria() {
-    }
-
     public LongFilter getId() {
         return id;
     }

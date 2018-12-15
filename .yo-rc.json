@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.pricestool.pricestool"
     },
-    "jhipsterVersion": "5.7.0",
+    "jhipsterVersion": "5.7.1",
     "applicationType": "monolith",
     "baseName": "pricestool",
     "packageName": "com.pricestool.pricestool",

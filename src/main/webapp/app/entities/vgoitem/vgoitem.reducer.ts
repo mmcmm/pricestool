@@ -73,11 +73,6 @@ export default (state: VgoitemState = initialState, action): VgoitemState => {
         errorMessage: action.payload
       };
     case SUCCESS(ACTION_TYPES.SEARCH_VGOITEMS):
-      return {
-        ...state,
-        loading: false,
-        entities: action.payload.data
-      };
     case SUCCESS(ACTION_TYPES.FETCH_VGOITEM_LIST):
       const links = parseHeaderForLinks(action.payload.headers.link);
       return {
@@ -122,9 +117,9 @@ const apiSearchUrl = 'api/_search/vgoitems';
 
 // Actions
 
-export const getSearchEntities: ICrudSearchAction<IVgoitem> = query => ({
+export const getSearchEntities: ICrudSearchAction<IVgoitem> = (query, page, size, sort) => ({
   type: ACTION_TYPES.SEARCH_VGOITEMS,
-  payload: axios.get<IVgoitem>(`${apiSearchUrl}?query=` + query)
+  payload: axios.get<IVgoitem>(`${apiSearchUrl}?query=${query}${sort ? `&page=${page}&size=${size}&sort=${sort}` : ''}`)
 });
 
 export const getEntities: ICrudGetAllAction<IVgoitem> = (page, size, sort) => {
