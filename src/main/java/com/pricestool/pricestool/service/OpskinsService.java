@@ -13,6 +13,8 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import com.pricestool.pricestool.domain.Vgoitem;
+import com.pricestool.pricestool.service.dto.lowprice.LowPriceDTO;
+import com.pricestool.pricestool.service.dto.lowprice.LowPriceItem;
 import com.pricestool.pricestool.service.dto.opdto.*;
 import java.util.*;
 
@@ -30,6 +32,8 @@ public class OpskinsService {
     final String OP_PRICES_API_URL = "https://api.opskins.com/IPricing/GetSuggestedPrices/v2/?appid=1912";
 
     final String OP_LOW_PRICES_API_URL = "https://api.opskins.com/IPricing/GetAllLowestListPrices/v1?appid=1912";
+
+    final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36";
 
     private final VgoitemService vgoItemService;
 
@@ -51,9 +55,31 @@ public class OpskinsService {
                 vgoitem.setName(name);
                 vgoitem.setOp7day(prices.get(name).getOp7Day());
                 vgoitem.setOp30day(prices.get(name).getOp30Day());
-                vgoItemService.save(vgoitem);                    
+                vgoItemService.save(vgoitem);
             } catch (Exception e) {
                 log.debug("Failed to save: " + e.getMessage());
+            }
+        }
+    }
+
+    @Async
+    @Scheduled(cron = "0 */2 * * * *") // 19 TODO:
+    public void updateItemLowPrices() {
+        log.debug("Run scheduled opskins  update items {}");
+
+        // get all normal items
+        Map<String, LowPriceItem> minPrices = opPriceData().getResponse();
+        List<Vgoitem> exisistingItems = vgoItemService.findAll();
+        for (Vgoitem vgoitem : exisistingItems) {
+            try {
+                LowPriceItem item = minPrices.get(vgoitem.getName());
+                if (item != null) {
+                    vgoitem.setQty(item.getQuantity());
+                    vgoitem.setMinPrice(item.getPrice());
+                    vgoItemService.save(vgoitem);
+                }
+            } catch (Exception e) {
+                log.debug("Failed to save low price: " + e.getMessage());
             }
         }
     }
@@ -61,11 +87,10 @@ public class OpskinsService {
     private OpskinsDTO callEndpoint(String endpoint) {
 
         RestTemplate restTemplate = restTemplate();
-
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
-        headers.set("User-Agent",
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36");
+        headers.set("User-Agent", USER_AGENT);
+
         HttpEntity<String> entityOP = new HttpEntity<>("parameters", headers);
         ResponseEntity<OpskinsDTO> respEntityOP;
         OpskinsDTO opresp = null;
@@ -94,5 +119,24 @@ public class OpskinsService {
             }
         }
         return template;
+    }
+
+    private LowPriceDTO opPriceData() {
+
+        RestTemplate restTemplate = restTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
+        headers.set("User-Agent", USER_AGENT);
+
+        HttpEntity<String> entityOP = new HttpEntity<>("parameters", headers);
+        ResponseEntity<LowPriceDTO> respEntityOP;
+        LowPriceDTO opresp = null;
+        try {
+            respEntityOP = restTemplate.exchange(OP_LOW_PRICES_API_URL, HttpMethod.GET, entityOP, LowPriceDTO.class);
+            opresp = respEntityOP.getBody();
+        } catch (Exception ex) {
+            log.error("Failed to fetch OPSkins data", ex.getMessage());
+        }
+        return opresp;
     }
 }

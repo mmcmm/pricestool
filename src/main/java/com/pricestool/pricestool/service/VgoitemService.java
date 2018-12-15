@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -66,6 +67,18 @@ public class VgoitemService {
     public Page<Vgoitem> findAll(Pageable pageable) {
         log.debug("Request to get all Vgoitems");
         return vgoitemRepository.findAll(pageable);
+    }
+
+    /**
+     * Get all the vgoitems.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<Vgoitem> findAll() {
+        log.debug("Request to get all Vgoitems");
+        return vgoitemRepository.findAll();
     }
 
 
