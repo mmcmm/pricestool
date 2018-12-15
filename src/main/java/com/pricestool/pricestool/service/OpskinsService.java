@@ -18,6 +18,7 @@ import com.pricestool.pricestool.service.dto.lowprice.LowPriceDTO;
 import com.pricestool.pricestool.service.dto.lowprice.LowPriceItem;
 import com.pricestool.pricestool.service.dto.opdto.*;
 import com.pricestool.pricestool.service.dto.sales.SalesDTO;
+import com.pricestool.pricestool.service.dto.sales.SalesItem;
 
 import java.util.*;
 
@@ -53,6 +54,7 @@ public class OpskinsService {
             Map<String, Price> prices = callEndpoint(OP_PRICES_API_URL).getResponse();
             vgoItemService.deleteAll();
             for (String name : prices.keySet()) {
+
                 Vgoitem vgoitem = new Vgoitem();
                 Price item = prices.get(name);
                 vgoitem.setName(name);
@@ -62,10 +64,16 @@ public class OpskinsService {
                 // get sales number
                 SalesDTO sales = opSaleData(name);
                 if (sales != null) {
-                    vgoitem.setSales(sales.getResponse().length);
+                    SalesItem[] salesArr = sales.getResponse();
+                    if (salesArr != null) {
+                        vgoitem.setSales(salesArr.length);
+                    } else {
+                        vgoitem.setSales(0);
+                    }
                 }
 
                 vgoItemService.save(vgoitem);
+                Thread.sleep(500);
             }
         } catch (Exception e) {
             log.debug("Failed to save: " + e.getMessage());
@@ -152,8 +160,8 @@ public class OpskinsService {
 
     private SalesDTO opSaleData(String name) {
         try {
-            final String endpoint = "https://api.opskins.com/ISales/GetLastSales/v1/?appid=730&market_name="
-                    + URLEncoder.encode(name, "UTF-8") + "&contextid=2&key=afc99418b41514a559d55200099a12";
+            final String endpoint = "https://api.opskins.com/ISales/GetLastSales/v1/?appid=1912&market_name="
+                    + URLEncoder.encode(name, "UTF-8") + "&contextid=1&key=afc99418b41514a559d55200099a12";
 
             RestTemplate restTemplate = restTemplate();
             HttpHeaders headers = new HttpHeaders();
