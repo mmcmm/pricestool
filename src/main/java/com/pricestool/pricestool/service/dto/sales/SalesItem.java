@@ -4,12 +4,16 @@ import java.io.Serializable;
 
 public class SalesItem implements Serializable {
     private long id;
+    private long itemIDOld;
     private int amount;
     private double wear;
     private long timestamp;
 
     public long getID() { return id; }
     public void setID(long value) { this.id = value; }
+
+    public long getItemIDOld() { return itemIDOld; }
+    public void setItemIDOld(long value) { this.itemIDOld = value; }
 
     public int getAmount() { return amount; }
     public void setAmount(int value) { this.amount = value; }

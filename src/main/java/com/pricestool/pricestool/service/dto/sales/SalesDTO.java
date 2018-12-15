@@ -10,23 +10,17 @@ import java.util.HashMap;
  */
 public class SalesDTO implements Serializable {
 
-    private int status;
-
+    private long status;
+    private long time;
     private SalesItem[] response;
 
-    public int getStatus() {
-        return status;
-    }
+    public long getStatus() { return status; }
+    public void setStatus(long value) { this.status = value; }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+    public long getTime() { return time; }
+    public void setTime(long value) { this.time = value; }
 
-    public SalesItem[] getResponse() {
-        return response;
-    }
-
-    public void setResponse(SalesItem[] response) {
-        this.response = response;
-    }
+    public SalesItem[] getResponse() { return response; }
+    public void setResponse(SalesItem[] value) { this.response = value; }
 }
+ 

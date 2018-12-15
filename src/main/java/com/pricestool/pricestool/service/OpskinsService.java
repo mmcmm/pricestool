@@ -3,13 +3,11 @@ package com.pricestool.pricestool.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;
-import java.net.URLEncoder;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
@@ -46,7 +44,7 @@ public class OpskinsService {
     }
 
     @Async
-    @Scheduled(cron = "0 */1 * * * *") // 0 0 */8 * * * TODO:
+    @Scheduled(cron = "0 */2 * * * *") // 0 0 */8 * * * TODO:
     public void updateItems() {
         log.debug("Run scheduled opskins  update items {}");
         try {
@@ -66,14 +64,23 @@ public class OpskinsService {
                 if (sales != null) {
                     SalesItem[] salesArr = sales.getResponse();
                     if (salesArr != null) {
-                        vgoitem.setSales(salesArr.length);
+                        int saleNr = 0;
+                        long currTimestamp = System.currentTimeMillis() / 1000;
+                        long past7days = currTimestamp - 24 * 60 * 60 * 7;
+                        for (SalesItem saleItem : salesArr) {
+                            if (saleItem.getTimestamp() < past7days) {
+                                break;
+                            }
+                            saleNr++;
+                        }
+                        vgoitem.setSales(saleNr);
                     } else {
                         vgoitem.setSales(0);
                     }
                 }
 
                 vgoItemService.save(vgoitem);
-                Thread.sleep(500);
+                Thread.sleep(100);
             }
         } catch (Exception e) {
             log.debug("Failed to save: " + e.getMessage());
@@ -160,8 +167,8 @@ public class OpskinsService {
 
     private SalesDTO opSaleData(String name) {
         try {
-            final String endpoint = "https://api.opskins.com/ISales/GetLastSales/v1/?appid=1912&market_name="
-                    + URLEncoder.encode(name, "UTF-8") + "&contextid=1&key=afc99418b41514a559d55200099a12";
+            final String endpoint = "https://api.opskins.com/ISales/GetLastSales/v1/?appid=1912&market_name=" + name
+                    + "&contextid=1&key=afc99418b41514a559d55200099a12";
 
             RestTemplate restTemplate = restTemplate();
             HttpHeaders headers = new HttpHeaders();
