@@ -42,7 +42,7 @@ public class OpskinsService {
     }
 
     @Async
-    @Scheduled(cron = "0 */15 * * * *") // 15
+    // @Scheduled(cron = "0 */15 * * * *") // 15 TODO:
     public void updateItems() {
         log.debug("Run scheduled opskins  update items {}");
 
@@ -63,24 +63,25 @@ public class OpskinsService {
     }
 
     @Async
-    @Scheduled(cron = "0 */2 * * * *") // 19 TODO:
+    @Scheduled(cron = "0 */1 * * * *") // 19 TODO:
     public void updateItemLowPrices() {
-        log.debug("Run scheduled opskins  update items {}");
+        log.debug("Run scheduled opskins lowest prices {}");
 
         // get all normal items
-        Map<String, LowPriceItem> minPrices = opPriceData().getResponse();
-        List<Vgoitem> exisistingItems = vgoItemService.findAll();
-        for (Vgoitem vgoitem : exisistingItems) {
-            try {
+        try {
+            Map<String, LowPriceItem> minPrices = opPriceData().getResponse();
+            List<Vgoitem> exisistingItems = vgoItemService.findAll();
+            for (Vgoitem vgoitem : exisistingItems) {
+
                 LowPriceItem item = minPrices.get(vgoitem.getName());
                 if (item != null) {
                     vgoitem.setQty(item.getQuantity());
                     vgoitem.setMinPrice(item.getPrice());
                     vgoItemService.save(vgoitem);
                 }
-            } catch (Exception e) {
-                log.debug("Failed to save low price: " + e.getMessage());
             }
+        } catch (Exception e) {
+            log.debug("Failed to save low price: " + e.getMessage());
         }
     }
 
