@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;
+import java.net.URLEncoder;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
@@ -42,7 +43,7 @@ public class OpskinsService {
     }
 
     @Async
-    // @Scheduled(cron = "0 */15 * * * *") // 15 TODO:
+    @Scheduled(cron = "0 */15 * * * *") // 15
     public void updateItems() {
         log.debug("Run scheduled opskins  update items {}");
 
@@ -63,7 +64,7 @@ public class OpskinsService {
     }
 
     @Async
-    @Scheduled(cron = "0 */1 * * * *") // 19 TODO:
+    @Scheduled(cron = "0 */19 * * * *") // 19
     public void updateItemLowPrices() {
         log.debug("Run scheduled opskins lowest prices {}");
 
@@ -72,7 +73,6 @@ public class OpskinsService {
             Map<String, LowPriceItem> minPrices = opPriceData().getResponse();
             List<Vgoitem> exisistingItems = vgoItemService.findAll();
             for (Vgoitem vgoitem : exisistingItems) {
-
                 LowPriceItem item = minPrices.get(vgoitem.getName());
                 if (item != null) {
                     vgoitem.setQty(item.getQuantity());
@@ -139,5 +139,28 @@ public class OpskinsService {
             log.error("Failed to fetch OPSkins data", ex.getMessage());
         }
         return opresp;
+    }
+
+    private LowPriceDTO opSaleData(String name) {
+        try {
+            final String endpoint = "https://api.opskins.com/ISales/GetLastSales/v1/?appid=730&market_name="
+                    + URLEncoder.encode(name, "UTF-8") + "&contextid=2&key=afc99418b41514a559d55200099a12";
+
+            RestTemplate restTemplate = restTemplate();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN));
+            headers.set("User-Agent", USER_AGENT);
+
+            HttpEntity<String> entityOP = new HttpEntity<>("parameters", headers);
+            ResponseEntity<LowPriceDTO> respEntityOP;
+            LowPriceDTO opresp = null;
+
+            respEntityOP = restTemplate.exchange(OP_LOW_PRICES_API_URL, HttpMethod.GET, entityOP, LowPriceDTO.class);
+            opresp = respEntityOP.getBody();
+            return opresp;
+        } catch (Exception ex) {
+            log.error("Failed to fetch OPSkins sales data", ex.getMessage());
+            return null;
+        }
     }
 }
